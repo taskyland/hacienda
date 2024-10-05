@@ -1,0 +1,67 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
+  "extends": [
+    "@taskylizard/biome-config"
+  ],
+  "javascript": {
+    "globals": [
+      "Bun"
+    ]
+  },
+  "linter": {
+    "rules": {
+      "style": {
+        "noDefaultExport": "off",
+        "useNamingConvention": {
+          "level": "error",
+          "options": {
+            "strictCase": false,
+            "conventions": [
+              {
+                "selector": {
+                  "kind": "enum"
+                },
+                "formats": [
+                  "CONSTANT_CASE",
+                  "PascalCase"
+                ]
+              },
+              {
+                "selector": {
+                  "kind": "typeParameter"
+                },
+                "formats": [
+                  "PascalCase"
+                ]
+              },
+              {
+                "selector": {
+                  "kind": "any"
+                },
+                "match": "[ab_]|(.{2,})"
+              },
+              {
+                "selector": {
+                  "kind": "objectLiteralMember"
+                },
+                "match": ".*"
+              },
+              {
+                "selector": {
+                  "kind": "typeMember"
+                },
+                "match": ".*"
+              },
+              {
+                "selector": {
+                  "kind": "variable"
+                },
+                "match": ".*"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

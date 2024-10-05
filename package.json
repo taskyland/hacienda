@@ -1,0 +1,39 @@
+{
+  "name": "example-with-tailwindcss",
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@kobalte/core": "^0.13.6",
+    "@kobalte/utils": "^0.9.1",
+    "@radix-ui/colors": "^3.0.0",
+    "@solidjs/router": "^0.14.7",
+    "@solidjs/start": "^1.0.8",
+    "@tailwindcss/typography": "^0.5.15",
+    "@zip.js/zip.js": "^2.7.52",
+    "autoprefixer": "^10.4.19",
+    "file-type": "^19.5.0",
+    "lucida": "2.0.0-49",
+    "postcss": "^8.4.38",
+    "sass-embedded": "^1.79.4",
+    "solid-js": "^1.9.1",
+    "solidjs-use": "^2.3.0",
+    "tailwindcss": "^3.4.3",
+    "unplugin-icons": "^0.19.3",
+    "vinxi": "^0.4.3"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.3",
+    "@iconify-json/carbon": "^1.2.1",
+    "@iconify-json/lucide": "^1.2.6",
+    "@iconify-json/radix-icons": "^1.2.0",
+    "@iconify-json/simple-icons": "^1.2.4",
+    "@taskylizard/biome-config": "^1.0.1"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
