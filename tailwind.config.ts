@@ -1,6 +1,7 @@
-import type { Config } from 'tailwindcss';
-import typography from '@tailwindcss/typography';
 import * as radixColors from '@radix-ui/colors';
+import typography from '@tailwindcss/typography';
+import type { Config } from 'tailwindcss';
+import animate from 'tailwindcss-animate';
 
 const colors: any = {};
 
@@ -89,7 +90,7 @@ export default {
       typography: ({ theme }) => ({ DEFAULT: { css: getProse(theme) } })
     }
   },
-  plugins: [typography]
+  plugins: [typography, animate]
 } satisfies Config;
 
 /* [
