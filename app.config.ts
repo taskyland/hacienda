@@ -2,11 +2,12 @@ import { defineConfig } from '@solidjs/start/config';
 import AutoImport from 'unplugin-auto-import/vite';
 import IconsResolver from 'unplugin-icons/resolver';
 import Icons from 'unplugin-icons/vite';
+import type { Plugin } from 'vinxi/dist/types/lib/vite-dev';
 
 /**
  * https://github.com/solidjs/solid-start/issues/1374#issuecomment-2162667748
  */
-const VinxiAutoImport = () => {
+const VinxiAutoImport = (): Plugin => {
   const autoimport = AutoImport({
     dts: true,
     packagePresets: ['solid-js', '@solidjs/router'],
@@ -38,15 +39,9 @@ const VinxiAutoImport = () => {
 export default defineConfig({
   vite: {
     // TODO: investigate why this is happening
-    // optimizeDeps: {
-    //   exclude: ["blowfish-cbc"],
-    // },
-    //
-    // build: {
-    //   rollupOptions: {
-    //     external: ["blowfish-cbc"],
-    //   },
-    // },
+    optimizeDeps: {
+      exclude: ['blowfish-cbc']
+    },
     plugins: [
       VinxiAutoImport(),
       Icons({
