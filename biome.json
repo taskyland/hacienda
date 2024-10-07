@@ -5,6 +5,9 @@
     "rules": {
       "style": {
         "noDefaultExport": "off"
+      },
+      "nursery": {
+        "useSortedClasses": "info"
       }
     }
   }

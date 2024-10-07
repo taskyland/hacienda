@@ -1,13 +1,13 @@
 import type { DropdownMenuTriggerProps } from '@kobalte/core/dropdown-menu';
 import { type Component, createEffect } from 'solid-js';
 import { useColorMode } from 'solidjs-use';
-import { Button } from './kobalte/Button';
+import { Button } from './Button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from './kobalte/DropdownMenu';
+} from './DropdownMenu';
 
 export const ModeToggle: Component = () => {
   const { mode, setMode } = useColorMode({
@@ -27,7 +27,7 @@ export const ModeToggle: Component = () => {
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
-              class="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
+              class="dark:-rotate-90 h-4 w-4 rotate-0 scale-100 transition-all dark:scale-0"
             >
               <path
                 fill="none"

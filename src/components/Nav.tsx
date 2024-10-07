@@ -1,13 +1,12 @@
-import { A } from '@solidjs/router';
 import type { Component } from 'solid-js';
+import { Button } from './Button';
 import ModeToggle from './ModeToggle';
-import { Button } from './kobalte/Button';
 
 export const Nav: Component = () => {
   return (
-    <nav class="top-0 right-0 h-14 px-4 sm:px-5 justify-center flex absolute bg-neutral-2/50 dark:bg-neutral-dark-2/50 border border-neutral-5 dark:border-neutral-dark-5 prose-a:no-underline prose-a:text-neutral-dark-1 dark:prose-a:text-neutral-5 w-full z-50">
-      <div class="flex items-center w-full max-w-screen-2xl">
-        <div class="flex items-center space-x-4 w-full pt-[1px]">
+    <nav class="absolute top-0 right-0 z-50 flex h-14 w-full justify-center border border-neutral-5 bg-neutral-2/50 px-4 prose-a:text-neutral-dark-1 prose-a:no-underline sm:px-5 dark:border-neutral-dark-5 dark:bg-neutral-dark-2/50 dark:prose-a:text-neutral-5">
+      <div class="flex w-full max-w-screen-2xl items-center">
+        <div class="flex w-full items-center space-x-4 pt-[1px]">
           <div class="-mt-1">
             <A href="/" class="block">
               <img class="h-8 w-8" src="favicon.ico" alt="Logo" />
