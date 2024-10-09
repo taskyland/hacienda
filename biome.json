@@ -3,6 +3,9 @@
   "extends": ["@taskylizard/biome-config", "./.biomelintrc-auto-import.json"],
   "linter": {
     "rules": {
+      "suspicious": {
+        "noReactSpecificProps": "error"
+      },
       "style": {
         "noDefaultExport": "off"
       },

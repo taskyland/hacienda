@@ -38,7 +38,6 @@ const VinxiAutoImport = (): Plugin => {
 
 export default defineConfig({
   vite: {
-    // TODO: investigate why this is happening
     optimizeDeps: {
       exclude: ['blowfish-cbc']
     },

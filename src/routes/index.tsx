@@ -17,15 +17,16 @@ export default function Home() {
     <main>
       <h1>Hacienda</h1>
       <p>
-        This project allows you to download music from your favorite music
-        streaming services for free. No fuss, nothing.
+        Hacienda allows you to download music from your favorite music streaming
+        services for free. No fuss, nothing.
       </p>
 
       <p>Enter a URL below to proceed.</p>
 
       <div class="space-y-2">
         <Input
-          id="input"
+          role="link"
+          required={true}
           placeholder="URL to your favorite music... 💕 🎵"
           onInput={(a) => {
             setInput(a.currentTarget.value);

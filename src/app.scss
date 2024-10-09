@@ -26,17 +26,6 @@
 
 body {
   @apply antialiased min-h-screen bg-neutral-1 dark:bg-neutral-dark-1;
-  font-family:
-    ui-sans-serif,
-    system-ui,
-    sans-serif,
-    Apple Color Emoji,
-    Segoe UI Emoji,
-    Segoe UI Symbol,
-    Noto Color Emoji;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
 }
 
 .content {
@@ -44,21 +33,9 @@ body {
 
   :is(:where(h1, h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *))) {
     @apply flex scroll-mt-24 items-center gap-2;
-
-    &:hover .header-anchor {
-      @apply opacity-100;
-    }
-
-    code {
-      font-weight: inherit;
-    }
   }
 
   :where(hr + h2):not(:where([class~="not-prose"] *)) {
     @apply -mt-4;
   }
-}
-
-.header-anchor {
-  @apply text-neutral-10 opacity-0 transition delay-100 duration-200 hover:text-neutral-11 focus:opacity-100 dark:text-neutral-dark-10 dark:hover:text-neutral-dark-11;
 }

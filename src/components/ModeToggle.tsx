@@ -1,6 +1,5 @@
 import type { DropdownMenuTriggerProps } from '@kobalte/core/dropdown-menu';
-import { type Component, createEffect } from 'solid-js';
-import { useColorMode } from 'solidjs-use';
+import type { Component } from 'solid-js';
 import { Button } from './Button';
 import {
   DropdownMenu,
@@ -10,14 +9,30 @@ import {
 } from './DropdownMenu';
 
 export const ModeToggle: Component = () => {
-  const { mode, setMode } = useColorMode({
-    emitAuto: true
-  });
+  const [theme, setThemeState] = createSignal<'light' | 'dark' | 'system'>(
+    'system'
+  );
 
-  createEffect(() => {
-    document.documentElement.className = mode();
-    document.body.className = mode() === 'auto' ? 'light' : mode();
-  });
+  createEffect(
+    on(
+      () => document.documentElement.classList.contains('dark'),
+      (isDarkMode) => {
+        setThemeState(isDarkMode ? 'dark' : 'light');
+      }
+    )
+  );
+
+  createEffect(
+    on(
+      () =>
+        theme() === 'dark' ||
+        (theme() === 'system' &&
+          window.matchMedia('(prefers-color-scheme: dark)').matches),
+      (isDark) => {
+        document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+      }
+    )
+  );
 
   return (
     <DropdownMenu placement="bottom-end">
@@ -37,6 +52,7 @@ export const ModeToggle: Component = () => {
                 stroke-width="2"
                 d="M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0m-5 0h1m8-9v1m8 8h1m-9 8v1M5.6 5.6l.7.7m12.1-.7l-.7.7m0 11.4l.7.7m-12.1-.7l-.7.7"
               />
+              <title>Light mode</title>
             </svg>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -51,13 +67,14 @@ export const ModeToggle: Component = () => {
                 stroke-width="2"
                 d="M12 3h.393a7.5 7.5 0 0 0 7.92 12.446A9 9 0 1 1 12 2.992z"
               />
+              <title>Dark mode</title>
             </svg>
             <span class="sr-only">Toggle theme</span>
           </Button>
         )}
       />
       <DropdownMenuContent class="min-w-[8rem]">
-        <DropdownMenuItem onSelect={() => setMode('light')}>
+        <DropdownMenuItem onSelect={() => setThemeState('light')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="mr-2 h-4 w-4"
@@ -74,7 +91,7 @@ export const ModeToggle: Component = () => {
           </svg>
           <span>Light</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => setMode('dark')}>
+        <DropdownMenuItem onSelect={() => setThemeState('dark')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="mr-2 h-4 w-4"
@@ -91,7 +108,7 @@ export const ModeToggle: Component = () => {
           </svg>
           <span>Dark</span>
         </DropdownMenuItem>
-        <DropdownMenuItem onSelect={() => setMode('auto')}>
+        <DropdownMenuItem onSelect={() => setThemeState('system')}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="mr-2 h-4 w-4"
