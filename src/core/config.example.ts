@@ -1,6 +1,10 @@
-// import Deezer from 'lucida/streamers/deezer';
+import Deezer from 'lucida/streamers/deezer';
+import { defineConfig } from './utils';
 
-export default {
+export default defineConfig({
   login: false,
-  modules: {}
-};
+  directory: '',
+  modules: {
+    deezer: new Deezer()
+  }
+});

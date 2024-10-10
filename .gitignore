@@ -30,3 +30,4 @@ Thumbs.db
 .biomelintrc-auto-import.json
 src/core/config.ts
 auto-imports.d.ts
+downloads/
