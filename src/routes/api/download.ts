@@ -1,22 +1,33 @@
 'use server';
 
 import type { APIEvent } from '@solidjs/start/server';
+import {
+  url,
+  flatten,
+  nonEmpty,
+  object,
+  pipe,
+  safeParseAsync,
+  string
+} from 'valibot';
 import { createError, getValidatedQuery } from 'vinxi/http';
-import { z } from 'zod';
 import { download } from '~/core/lucida';
 
-const paramSchema = z.object({
-  url: z.string().url()
+const paramSchema = object({
+  url: pipe(string(), nonEmpty('Cannot be empty'), url('Invalid URL'))
 });
 
 export async function POST(event: APIEvent) {
-  const target = await getValidatedQuery(
-    event.nativeEvent,
-    paramSchema.safeParseAsync
+  const target = await getValidatedQuery(event.nativeEvent, (data) =>
+    safeParseAsync(paramSchema, data)
   );
-  if (target.error) return createError(target.error.toString());
+  if (!target.success)
+    return json(
+      { errors: flatten<typeof paramSchema>(target.issues) },
+      { status: 400 }
+    );
 
-  const result = await download(target.data.url);
+  const result = await download(target.output.url);
   if (!result.ok) return createError(result.error);
 
   return json(result);

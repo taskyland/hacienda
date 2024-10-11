@@ -38,6 +38,7 @@
     "ts-pattern": "^5.4.0",
     "unplugin-auto-import": "^0.18.3",
     "unplugin-icons": "^0.19.3",
+    "valibot": "^0.42.1",
     "vinxi": "^0.4.3",
     "zod": "^3.23.8"
   },
