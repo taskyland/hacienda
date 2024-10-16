@@ -1,8 +1,8 @@
-import { defineConfig } from '@solidjs/start/config';
-import AutoImport from 'unplugin-auto-import/vite';
-import IconsResolver from 'unplugin-icons/resolver';
-import Icons from 'unplugin-icons/vite';
-import type { Plugin } from 'vinxi/dist/types/lib/vite-dev';
+import { defineConfig } from '@solidjs/start/config'
+import AutoImport from 'unplugin-auto-import/vite'
+import IconsResolver from 'unplugin-icons/resolver'
+import Icons from 'unplugin-icons/vite'
+import type { Plugin } from 'vinxi/dist/types/lib/vite-dev'
 
 /**
  * https://github.com/solidjs/solid-start/issues/1374#issuecomment-2162667748
@@ -21,20 +21,20 @@ const VinxiAutoImport = (): Plugin => {
     biomelintrc: {
       enabled: true
     }
-  });
+  })
 
   return {
     ...autoimport,
     transform(src, id) {
-      let _id = id;
+      let _id = id
       if (_id.startsWith('/')) {
-        _id = new URL(`file://${_id}`).pathname;
+        _id = new URL(`file://${_id}`).pathname
       }
 
-      return autoimport.transform(src, _id);
+      return autoimport.transform(src, _id)
     }
-  };
-};
+  }
+}
 
 export default defineConfig({
   vite: {
@@ -56,4 +56,4 @@ export default defineConfig({
       }
     }
   }
-});
+})

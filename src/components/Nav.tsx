@@ -1,6 +1,6 @@
-import type { Component } from 'solid-js';
-import { Button } from './Button';
-import ModeToggle from './ModeToggle';
+import type { Component } from 'solid-js'
+import { Button } from './Button'
+import ModeToggle from './ModeToggle'
 
 export const Nav: Component = () => {
   return (
@@ -23,7 +23,7 @@ export const Nav: Component = () => {
         </div>
       </div>
     </nav>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav

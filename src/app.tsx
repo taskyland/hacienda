@@ -1,7 +1,8 @@
-import { MetaProvider, Title } from '@solidjs/meta';
-import { FileRoutes } from '@solidjs/start/router';
-import './app.scss';
-import Nav from './components/Nav';
+import { MetaProvider, Title } from '@solidjs/meta'
+import { FileRoutes } from '@solidjs/start/router'
+import './app.scss'
+import { Footer } from './components/Footer'
+import Nav from './components/Nav'
 
 export default function App() {
   return (
@@ -47,23 +48,12 @@ export default function App() {
               <Suspense>{props.children}</Suspense>
             </ErrorBoundary>
             <hr />
-            <footer class="prose-p mx-auto my-auto w-full max-w-xl prose-a:no-underline">
-              <A href="https://github.com/taskyland" class="mx-auto">
-                <span class="text-pink-11 dark:text-pink-dark-11">
-                  💐 taskyland
-                </span>{' '}
-                community
-              </A>
-              <p>
-                Copyleft 2024. We are not affiliated with any of the services
-                mentioned above.
-              </p>
-            </footer>
+            <Footer />
           </main>
         </MetaProvider>
       )}
     >
       <FileRoutes />
     </Router>
-  );
+  )
 }

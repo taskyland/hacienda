@@ -1,22 +1,22 @@
-import * as radixColors from '@radix-ui/colors';
-import typography from '@tailwindcss/typography';
-import type { Config } from 'tailwindcss';
-import animate from 'tailwindcss-animate';
+import * as radixColors from '@radix-ui/colors'
+import typography from '@tailwindcss/typography'
+import type { Config } from 'tailwindcss'
+import animate from 'tailwindcss-animate'
 
-const colors: any = {};
+const colors: any = {}
 
 Object.entries(radixColors).forEach(([key, value]) => {
   const [baseColor, ...prefixes] = key
     .split(/(?=[A-Z])/)
-    .map((word) => word.toLowerCase());
-  colors[baseColor] ??= {};
+    .map((word) => word.toLowerCase())
+  colors[baseColor] ??= {}
   Object.entries(value).forEach(([colorKey, colorValue]) => {
     colors[baseColor][[...prefixes, colorKey.replace(/\D+/, '')].join('-')] =
-      colorValue;
-  });
-});
+      colorValue
+  })
+})
 
-const brand = 'mint' as const;
+const brand = 'mint' as const
 
 const gray = (
   {
@@ -45,12 +45,12 @@ const gray = (
     orange: 'sand',
     brown: 'sand'
   } as const
-)[brand];
+)[brand]
 
-colors.primary = colors[brand];
-colors.neutral = colors[gray];
-colors.white.DEFAULT = 'white';
-colors.black.DEFAULT = 'black';
+colors.primary = colors[brand]
+colors.neutral = colors[gray]
+colors.white.DEFAULT = 'white'
+colors.black.DEFAULT = 'black'
 
 const prose = {
   body: '11',
@@ -69,16 +69,16 @@ const prose = {
   'pre-bg': '3',
   'th-borders': '7',
   'td-borders': '6'
-};
+}
 
 function getProse(theme: (key: string) => string) {
-  const res = {};
+  const res = {}
   Object.keys(prose).forEach((key) => {
-    const value = `colors.${prose[key].replace(/^\d/, 'gray.$&')}`;
-    res[`--tw-prose-${key}`] = theme(value);
-    res[`--tw-prose-invert-${key}`] = theme(value.replace(/\d+$/, 'dark-$&'));
-  });
-  return res;
+    const value = `colors.${prose[key].replace(/^\d/, 'gray.$&')}`
+    res[`--tw-prose-${key}`] = theme(value)
+    res[`--tw-prose-invert-${key}`] = theme(value.replace(/\d+$/, 'dark-$&'))
+  })
+  return res
 }
 
 export default {
@@ -91,7 +91,7 @@ export default {
     }
   },
   plugins: [typography, animate]
-} satisfies Config;
+} satisfies Config
 
 /* [
   'amber',  'black',  'blue',

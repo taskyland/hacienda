@@ -1,5 +1,5 @@
-import { Title } from '@solidjs/meta';
-import { HttpStatusCode } from '@solidjs/start';
+import { Title } from '@solidjs/meta'
+import { HttpStatusCode } from '@solidjs/start'
 
 export default function NotFound() {
   return (
@@ -8,5 +8,5 @@ export default function NotFound() {
       <HttpStatusCode code={404} />
       <h1>Oops! Page Not Found</h1>
     </main>
-  );
+  )
 }

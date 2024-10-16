@@ -1,0 +1,12 @@
+directory = "downloads"
+concurrency = 5
+
+[modules.tidal]
+username = "meow"
+password = "meow"
+
+[modules.qobuz]
+username = "meow"
+password = "meow"
+
+# ... same for logins

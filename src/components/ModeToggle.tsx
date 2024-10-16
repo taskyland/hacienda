@@ -1,26 +1,26 @@
-import type { DropdownMenuTriggerProps } from '@kobalte/core/dropdown-menu';
-import type { Component } from 'solid-js';
-import { Button } from './Button';
+import type { DropdownMenuTriggerProps } from '@kobalte/core/dropdown-menu'
+import type { Component } from 'solid-js'
+import { Button } from './Button'
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger
-} from './DropdownMenu';
+} from './DropdownMenu'
 
 export const ModeToggle: Component = () => {
   const [theme, setThemeState] = createSignal<'light' | 'dark' | 'system'>(
     'system'
-  );
+  )
 
   createEffect(
     on(
       () => document.documentElement.classList.contains('dark'),
       (isDarkMode) => {
-        setThemeState(isDarkMode ? 'dark' : 'light');
+        setThemeState(isDarkMode ? 'dark' : 'light')
       }
     )
-  );
+  )
 
   createEffect(
     on(
@@ -29,10 +29,10 @@ export const ModeToggle: Component = () => {
         (theme() === 'system' &&
           window.matchMedia('(prefers-color-scheme: dark)').matches),
       (isDark) => {
-        document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
+        document.documentElement.classList[isDark ? 'add' : 'remove']('dark')
       }
     )
-  );
+  )
 
   return (
     <DropdownMenu placement="bottom-end">
@@ -127,7 +127,7 @@ export const ModeToggle: Component = () => {
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-};
+  )
+}
 
-export default ModeToggle;
+export default ModeToggle
