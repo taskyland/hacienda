@@ -4,7 +4,7 @@ import ModeToggle from './ModeToggle'
 
 export const Nav: Component = () => {
   return (
-    <nav class="absolute top-0 right-0 z-50 flex h-14 w-full justify-center bg-neutral-2/50 px-4 prose-a:text-neutral-dark-1 prose-a:no-underline sm:px-5 dark:bg-neutral-dark-2/50 dark:prose-a:text-neutral-5">
+    <nav class="absolute top-0 right-0 z-50 flex h-14 w-full justify-center bg-neutral-2 px-4 prose-a:text-neutral-dark-1 prose-a:no-underline sm:px-5 dark:bg-neutral-dark-2 dark:prose-a:text-neutral-1">
       <div class="flex w-full max-w-screen-2xl items-center">
         <div class="flex w-full items-center space-x-4 pt-[1px]">
           <div class="-mt-1">

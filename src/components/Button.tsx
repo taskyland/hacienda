@@ -12,15 +12,7 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         default:
-          'bg-neutral-3 hover:bg-neutral-4/90 focus:ring-2 focus:ring-neutral-5 dark:bg-neutral-dark-3 dark:hover:bg-neutral-dark-4/90 dark:focus:ring-neutral-dark-5 shadow',
-        destructive:
-          'bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90',
-        outline:
-          'border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground',
-        secondary:
-          'bg-secondary text-secondary-foreground shadow-sm hover:bg-secondary/80',
-        ghost: 'hover:bg-accent hover:text-accent-foreground',
-        link: 'text-primary underline-offset-4 hover:underline'
+          'bg-neutral-3 hover:bg-neutral-4/90 focus:ring-2 focus:ring-neutral-5 dark:bg-neutral-dark-3 dark:hover:bg-neutral-dark-4/90 dark:focus:ring-neutral-dark-5 shadow'
       },
       size: {
         default: 'h-9 px-4 py-2',

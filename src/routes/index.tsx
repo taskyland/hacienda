@@ -54,7 +54,8 @@ export default function Home() {
       } else {
         setDownloadStatus(`Error: ${data.error || 'Unknown error occurred'}`)
       }
-    } catch (error) {
+    } catch (_error) {
+      const error = _error as Error
       setDownloadStatus(`Error: ${error.message || 'Unknown error occurred'}`)
     } finally {
       setIsLoading(false)
@@ -71,7 +72,7 @@ export default function Home() {
 
       <p>Enter a URL below to proceed.</p>
 
-      <div class="space-y-2">
+      <div class="flex w-full max-w-sm items-center space-x-2">
         <Input
           role="link"
           required={true}
@@ -83,7 +84,7 @@ export default function Home() {
 
         <Button
           size="icon"
-          id="download-button"
+          class="h-10 w-10"
           aria="Download"
           onClick={handleDownload}
           disabled={isLoading()}
@@ -91,13 +92,7 @@ export default function Home() {
           {isLoading() ? <Loading /> : <IconLucideDownload />}
         </Button>
 
-        {downloadStatus() && (
-          <p
-            class={`mt-2 ${downloadStatus().startsWith('Error') ? 'text-red-500' : 'text-green-500'}`}
-          >
-            {downloadStatus()}
-          </p>
-        )}
+        {downloadStatus() && <p class="mt-2">{downloadStatus()}</p>}
       </div>
     </main>
   )
