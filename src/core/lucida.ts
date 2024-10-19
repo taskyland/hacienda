@@ -1,6 +1,4 @@
-'use server'
 import fsp from 'node:fs/promises'
-import { capitalize, objectKeys } from '@antfu/utils'
 import { consola } from 'consola'
 import { fileTypeFromStream } from 'file-type'
 import Lucida from 'lucida'
@@ -160,8 +158,3 @@ export async function download(url: string): Promise<Result<string, string>> {
     })
     .exhaustive()
 }
-
-// TODO: --- Use this to populate services list
-export const enabledServices = objectKeys(config.modules).map((a) =>
-  capitalize(a)
-)

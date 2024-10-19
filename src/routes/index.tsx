@@ -1,14 +1,6 @@
 import { Button } from '~/components/Button'
 import { Input } from '~/components/Input'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue
-} from '~/components/Select'
-
-const services = ['Tidal', 'Qobuz', 'Deezer']
+import { Loading } from '~/components/Loading'
 
 // remove `undefined` from setter argument union type
 type UpdatePair<T> = [
@@ -22,6 +14,8 @@ export default function Home() {
   const [updatedURL, setURL] = createSignal<TextUpdate>(
     undefined
   ) as TextUpdatePair
+  const [downloadStatus, setDownloadStatus] = createSignal<string>('')
+  const [isLoading, setIsLoading] = createSignal<boolean>(false)
 
   const urlListener = (
     element: InputEvent & {
@@ -34,6 +28,38 @@ export default function Home() {
   }
 
   const title = () => updatedURL() ?? ''
+
+  const handleDownload = async () => {
+    if (!updatedURL()) {
+      setDownloadStatus('Please enter a valid URL')
+      return
+    }
+
+    setIsLoading(true)
+    setDownloadStatus('Downloading...')
+
+    try {
+      const response = await fetch('/api/download', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ url: updatedURL() })
+      })
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setDownloadStatus(`Success: ${data.result}`)
+      } else {
+        setDownloadStatus(`Error: ${data.error || 'Unknown error occurred'}`)
+      }
+    } catch (error) {
+      setDownloadStatus(`Error: ${error.message || 'Unknown error occurred'}`)
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   return (
     <main>
@@ -52,26 +78,26 @@ export default function Home() {
           placeholder="URL to your favorite music... 💕 🎵"
           onInput={urlListener}
           value={title()}
+          disabled={isLoading()}
         />
 
-        <Select
-          options={services}
-          placeholder="Select a service…"
-          itemComponent={(props) => (
-            <SelectItem item={props.item}>{props.item.rawValue}</SelectItem>
-          )}
+        <Button
+          size="icon"
+          id="download-button"
+          aria="Download"
+          onClick={handleDownload}
+          disabled={isLoading()}
         >
-          <SelectTrigger>
-            <SelectValue<string>>
-              {(state) => state.selectedOption()}
-            </SelectValue>
-          </SelectTrigger>
-          <SelectContent />
-        </Select>
-
-        <Button id="download-button" aria="Download">
-          Download
+          {isLoading() ? <Loading /> : <IconLucideDownload />}
         </Button>
+
+        {downloadStatus() && (
+          <p
+            class={`mt-2 ${downloadStatus().startsWith('Error') ? 'text-red-500' : 'text-green-500'}`}
+          >
+            {downloadStatus()}
+          </p>
+        )}
       </div>
     </main>
   )

@@ -29,7 +29,7 @@ body {
 }
 
 .content {
-  @apply prose mx-auto px-8 py-24 dark:prose-invert focus:outline-none prose-a:decoration-dashed hover:prose-a:decoration-solid focus:prose-a:decoration-solid prose-pre:my-0 prose-pre:rounded-lg prose-table:block prose-table:overflow-x-auto prose-table:whitespace-nowrap md:px-0;
+  @apply prose mx-auto my-auto px-8 py-24 dark:prose-invert focus:outline-none prose-a:decoration-dashed hover:prose-a:decoration-solid focus:prose-a:decoration-solid prose-pre:my-0 prose-pre:rounded-lg prose-table:block prose-table:overflow-x-auto prose-table:whitespace-nowrap md:px-0;
 
   :is(:where(h1, h2, h3, h4, h5, h6):not(:where([class~="not-prose"] *))) {
     @apply flex scroll-mt-24 items-center gap-2;

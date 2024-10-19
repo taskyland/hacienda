@@ -8,20 +8,21 @@ import {
   safeParseAsync,
   string
 } from 'valibot'
-import { createError, getValidatedQuery } from 'vinxi/http'
+import { createError, readValidatedBody } from 'vinxi/http'
 import { download } from '~/core/lucida'
 
-const paramSchema = object({
+const bodySchema = object({
   url: pipe(string(), nonEmpty('Cannot be empty'), url('Invalid URL'))
 })
 
 export async function POST(event: APIEvent) {
-  const target = await getValidatedQuery(event.nativeEvent, (data) =>
-    safeParseAsync(paramSchema, data)
+  const target = await readValidatedBody(event.nativeEvent, (data) =>
+    safeParseAsync(bodySchema, data)
   )
+
   if (!target.success)
     return json(
-      { errors: flatten<typeof paramSchema>(target.issues) },
+      { errors: flatten<typeof bodySchema>(target.issues) },
       { status: 400 }
     )
 

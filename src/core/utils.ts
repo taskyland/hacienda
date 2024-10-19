@@ -1,5 +1,4 @@
 import fsp from 'node:fs/promises'
-import { loadConfig as _loadConfig } from 'c12'
 import type { ClassValue } from 'clsx'
 import clsx from 'clsx'
 import { resolve } from 'pathe'
