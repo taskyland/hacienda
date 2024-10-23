@@ -1,6 +1,9 @@
 directory = "downloads"
 concurrency = 5
 
+# Should be kept empty  even if you don't use any login required modules 
+logins = {}
+
 [modules.tidal]
 username = "meow"
 password = "meow"

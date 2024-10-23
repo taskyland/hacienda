@@ -1,2 +1,3 @@
 [tools]
 typos = "latest"
+"ubi:filebrowser/filebrowser" = "latest"

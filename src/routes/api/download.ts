@@ -8,8 +8,9 @@ import {
   safeParseAsync,
   string
 } from 'valibot'
-import { createError, readValidatedBody } from 'vinxi/http'
-import { download } from '~/core/lucida'
+import { readValidatedBody } from 'vinxi/http'
+import { downloader } from '~/core/lucida'
+import { createEventStream } from '~/core/sse'
 
 const bodySchema = object({
   url: pipe(string(), nonEmpty('Cannot be empty'), url('Invalid URL'))
@@ -26,8 +27,28 @@ export async function POST(event: APIEvent) {
       { status: 400 }
     )
 
-  const result = await download(target.output.url)
-  if (!result.ok) return createError(result.error)
+  const stream = createEventStream(event.nativeEvent)
+  const errors = []
 
-  return json(result)
+  downloader.emitter.on('*', async (type, data) => {
+    await stream.push({
+      event: type,
+      data: JSON.stringify(data)
+    })
+  })
+
+  downloader.emitter.on('error', (error) => errors.push(error))
+  downloader.emitter.on('status', (data) => {
+    if (data === 'disconnect') {
+      stream.close()
+    }
+  })
+  stream
+    .push({ event: 'established', data: 'true' })
+    .then(async () => await downloader.download(target.output.url))
+
+  stream.onClosed(async () => {
+    await stream.close()
+  })
+  return stream.send()
 }

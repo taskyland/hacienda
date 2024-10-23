@@ -1,6 +1,6 @@
 import { Button } from '~/components/Button'
-import { Input } from '~/components/Input'
 import { Loading } from '~/components/Loading'
+import { TextField, TextFieldRoot } from '~/components/TextField'
 
 // remove `undefined` from setter argument union type
 type UpdatePair<T> = [
@@ -17,17 +17,12 @@ export default function Home() {
   const [downloadStatus, setDownloadStatus] = createSignal<string>('')
   const [isLoading, setIsLoading] = createSignal<boolean>(false)
 
-  const urlListener = (
-    element: InputEvent & {
-      currentTarget: HTMLInputElement
-      target: HTMLInputElement
-    }
-  ) => {
+  const urlListener = (element: any) => {
     element.stopPropagation()
     setURL(element.currentTarget.value)
   }
 
-  const title = () => updatedURL() ?? ''
+  const url = () => updatedURL() ?? ''
 
   const handleDownload = async () => {
     if (!updatedURL()) {
@@ -73,14 +68,15 @@ export default function Home() {
       <p>Enter a URL below to proceed.</p>
 
       <div class="flex w-full max-w-sm items-center space-x-2">
-        <Input
-          role="link"
-          required={true}
-          placeholder="URL to your favorite music... 💕 🎵"
-          onInput={urlListener}
-          value={title()}
-          disabled={isLoading()}
-        />
+        <TextFieldRoot class="w-full max-w-xs">
+          <TextField
+            type="link"
+            placeholder="URL to your favorite music... 🎵"
+            onInput={urlListener}
+            value={url()}
+            disabled={isLoading()}
+          />
+        </TextFieldRoot>
 
         <Button
           size="icon"
@@ -91,9 +87,9 @@ export default function Home() {
         >
           {isLoading() ? <Loading /> : <IconLucideDownload />}
         </Button>
-
-        {downloadStatus() && <p class="mt-2">{downloadStatus()}</p>}
       </div>
+      <hr />
+      {downloadStatus() && <p class="mt-2">{downloadStatus()}</p>}
     </main>
   )
 }

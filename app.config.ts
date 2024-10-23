@@ -9,9 +9,9 @@ import type { Plugin } from 'vinxi/dist/types/lib/vite-dev'
  */
 const VinxiAutoImport = (): Plugin => {
   const autoimport = AutoImport({
-    dts: true,
+    dts: './.vinxi/imports.d.ts',
     packagePresets: ['solid-js', '@solidjs/router'],
-    imports: ['solid-js', '@solidjs/router'],
+    imports: ['solid-js', '@solidjs/router', 'vitest'],
     resolvers: [
       IconsResolver({
         prefix: 'Icon',
@@ -19,7 +19,8 @@ const VinxiAutoImport = (): Plugin => {
       })
     ],
     biomelintrc: {
-      enabled: true
+      enabled: true,
+      filepath: './.vinxi/biome.json'
     }
   })
 
@@ -37,6 +38,9 @@ const VinxiAutoImport = (): Plugin => {
 }
 
 export default defineConfig({
+  server: {
+    esbuild: { options: { target: 'esnext' } }
+  },
   vite: {
     optimizeDeps: {
       exclude: ['blowfish-cbc']

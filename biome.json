@@ -1,7 +1,8 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.3/schema.json",
-  "extends": ["@taskylizard/biome-config", "./.biomelintrc-auto-import.json"],
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "extends": ["./.vinxi/biome.json", "@taskylizard/biome-config"],
   "linter": {
+    "ignore": ["scripts/"],
     "rules": {
       "suspicious": {
         "noReactSpecificProps": "error"
@@ -13,5 +14,17 @@
         "useSortedClasses": "info"
       }
     }
-  }
+  },
+  "overrides": [
+    {
+      "include": ["tests/**/*.ts"],
+      "linter": {
+        "rules": {
+          "correctness": {
+            "noUndeclaredVariables": "off"
+          }
+        }
+      }
+    }
+  ]
 }

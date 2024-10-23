@@ -23,6 +23,7 @@ app.config.timestamp_*.js
 
 # Temp
 gitignore
+tests/tmp/
 
 # System Files
 .DS_Store
@@ -31,3 +32,4 @@ Thumbs.db
 auto-imports.d.ts
 downloads/
 config.toml
+filebrowser.db

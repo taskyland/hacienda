@@ -5,6 +5,10 @@ import Tidal from 'lucida/streamers/tidal'
 import { resolve } from 'pathe'
 import { parse } from 'smol-toml'
 
+// Helper function to check if an object is empty
+const isEmptyObject = (obj: any) =>
+  typeof obj === 'object' && Object.keys(obj).length === 0
+
 export interface Config {
   /** Some modules require a login */
   login?: boolean
@@ -21,10 +25,12 @@ export interface Config {
   }>
   /** Login credentials */
   logins?: {
-    [key: string]: {
-      username: string
-      password: string
-    }
+    [key: string]:
+      | {
+          username: string
+          password: string
+        }
+      | (any & {})
   }
 }
 
@@ -80,9 +86,14 @@ export async function loadConfig() {
 
   if (config.logins) {
     for (const [key, value] of Object.entries(config.logins)) {
-      config.logins[key] = {
-        username: value.username,
-        password: value.password
+      if (isEmptyObject(value)) {
+        // Needed because of lucida's stupid config parsing
+        config.logins[key] = {}
+      } else {
+        config.logins[key] = {
+          username: value.username,
+          password: value.password
+        }
       }
     }
   }

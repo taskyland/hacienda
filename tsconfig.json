@@ -10,11 +10,20 @@
     "allowJs": true,
     "noEmit": true,
     "strict": true,
-    "types": ["vinxi/types/client", "unplugin-icons/types/solid"],
+    "types": [
+      "vinxi/types/client",
+      "unplugin-icons/types/solid",
+      "vitest/globals"
+    ],
     "isolatedModules": true,
     "paths": {
       "~/*": ["./src/*"]
     }
   },
-  "include": ["./auto-imports.d.ts", "src/**/*.ts", "src/**/*.tsx"]
+  "include": [
+    "./.vinxi/imports.d.ts",
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "tests/**/*.ts"
+  ]
 }

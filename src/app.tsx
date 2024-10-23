@@ -47,7 +47,6 @@ export default function App() {
             <ErrorBoundary fallback={(error) => <div>Oops! {error}</div>}>
               <Suspense>{props.children}</Suspense>
             </ErrorBoundary>
-            <hr />
             <Footer />
           </main>
         </MetaProvider>
