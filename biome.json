@@ -1,6 +1,6 @@
 {
   "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "extends": ["./.vinxi/biome.json", "@taskylizard/biome-config"],
+  "extends": ["@taskylizard/biome-config"],
   "linter": {
     "ignore": ["scripts/"],
     "rules": {
@@ -12,19 +12,10 @@
       },
       "nursery": {
         "useSortedClasses": "info"
+      },
+      "correctness": {
+        "noUndeclaredVariables": "off"
       }
     }
-  },
-  "overrides": [
-    {
-      "include": ["tests/**/*.ts"],
-      "linter": {
-        "rules": {
-          "correctness": {
-            "noUndeclaredVariables": "off"
-          }
-        }
-      }
-    }
-  ]
+  }
 }

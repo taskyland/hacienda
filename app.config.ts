@@ -12,16 +12,13 @@ const VinxiAutoImport = (): Plugin => {
     dts: './.vinxi/imports.d.ts',
     packagePresets: ['solid-js', '@solidjs/router'],
     imports: ['solid-js', '@solidjs/router', 'vitest'],
+    dirs: ['./src/components/*', './src/core/*'],
     resolvers: [
       IconsResolver({
         prefix: 'Icon',
         extension: 'jsx'
       })
-    ],
-    biomelintrc: {
-      enabled: true,
-      filepath: './.vinxi/biome.json'
-    }
+    ]
   })
 
   return {

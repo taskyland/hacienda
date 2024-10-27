@@ -42,8 +42,8 @@ export default function App() {
   setColorMode()
 `}
           />
+          <Nav />
           <main class="content">
-            <Nav />
             <ErrorBoundary fallback={(error) => <div>Oops! {error}</div>}>
               <Suspense>{props.children}</Suspense>
             </ErrorBoundary>

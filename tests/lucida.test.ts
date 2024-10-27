@@ -1,5 +1,5 @@
 import type { TrackGetByUrlResponse } from 'lucida/types'
-import { Downloader } from '../src/core/lucida'
+import { Downloader } from '../src/core/downloader'
 
 describe('Downloader', () => {
   let downloader: Downloader

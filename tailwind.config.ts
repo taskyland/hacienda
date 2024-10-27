@@ -1,5 +1,6 @@
 import * as radixColors from '@radix-ui/colors'
 import typography from '@tailwindcss/typography'
+import fluid, { extract, screens, fontSize } from 'fluid-tailwind'
 import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
 
@@ -83,14 +84,16 @@ function getProse(theme: (key: string) => string) {
 
 export default {
   darkMode: 'class',
-  content: ['./src/**/*.{html,js,jsx,ts,tsx}'],
+  content: { files: ['./src/**/*.{html,js,jsx,ts,tsx}'], extract },
   theme: {
     colors,
     extend: {
+      screens,
+      fontSize,
       typography: ({ theme }) => ({ DEFAULT: { css: getProse(theme) } })
     }
   },
-  plugins: [typography, animate]
+  plugins: [fluid, typography, animate]
 } satisfies Config
 
 /* [

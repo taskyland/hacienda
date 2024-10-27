@@ -16,13 +16,12 @@ export default function Home() {
   ) as TextUpdatePair
   const [downloadStatus, setDownloadStatus] = createSignal<string>('')
   const [isLoading, setIsLoading] = createSignal<boolean>(false)
+  const url = () => updatedURL() ?? ''
 
   const urlListener = (element: any) => {
     element.stopPropagation()
     setURL(element.currentTarget.value)
   }
-
-  const url = () => updatedURL() ?? ''
 
   const handleDownload = async () => {
     if (!updatedURL()) {
@@ -80,7 +79,7 @@ export default function Home() {
 
         <Button
           size="icon"
-          class="h-10 w-10"
+          class="size-10"
           aria="Download"
           onClick={handleDownload}
           disabled={isLoading()}
