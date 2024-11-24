@@ -82,12 +82,15 @@ export async function loadConfig() {
     config.modules.deezer = new Deezer({
       arl: config.modules.deezer.arl
     })
+    // HACK: It's dumb but lucida needs a empty logins parameter for deezer
+    config.logins = { deezer: {} }
+    config.login = true
   }
 
   if (config.logins) {
     for (const [key, value] of Object.entries(config.logins)) {
       if (isEmptyObject(value)) {
-        // Needed because of lucida's stupid config parsing
+        // Needed because of lucida's stupid config parsing like above for deezer
         config.logins[key] = {}
       } else {
         config.logins[key] = {
